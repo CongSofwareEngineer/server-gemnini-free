@@ -12,7 +12,7 @@ const limiter = rateLimit({
     res.status(429).json({
       error: 'Too many requests',
       message: 'Rate limit exceeded. Please try again later.',
-      retryAfter: Math.ceil(APP_CONFIG.WindowMs/ 1000)
+      retryAfter: Math.ceil(APP_CONFIG.WindowMs / 1000)
     })
   },
   skip: (req: Request) => {
@@ -23,23 +23,10 @@ const limiter = rateLimit({
 
 // CORS configuration - restrict allowed domains
 const corsOptions: cors.CorsOptions = {
-  origin: (origin, callback) => {
-    // Allow requests with no origin (mobile apps, curl, etc.)
-    if (!origin) {
-      return callback(null, true)
-    }
-
-    // Check if origin is allowed
-    if (ALLOWED_ORIGINS.includes('*') || ALLOWED_ORIGINS.includes(origin)) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  },
+  origin: ALLOWED_ORIGINS.includes('*') ? '*' : ALLOWED_ORIGINS,
   methods: ['POST', 'GET', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
-  maxAge: 86400 // 24 hours
+  optionsSuccessStatus: 200
 }
 
 export { limiter, corsOptions }
