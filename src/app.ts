@@ -2,9 +2,9 @@ import express, { Request, Response, NextFunction } from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
 import dotenv from 'dotenv'
-import { corsOptions, limiter } from '@/config/app'
-import GeminiRouter from '@/routes/gemini'
-import AppRouter from '@/routes/app'
+import { corsOptions, limiter } from './config/app'
+import GeminiRouter from './routes/gemini'
+import AppRouter from './routes/app'
 
 dotenv.config()
 const app = express()

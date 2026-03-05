@@ -1,5 +1,5 @@
+import GeminiUtils from '../../utils/gemini'
 import express, { Request, Response } from 'express'
-import GeminiUtils from '@/utils/gemini'
 
 const router = express.Router()
 

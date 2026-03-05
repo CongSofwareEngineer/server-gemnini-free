@@ -1,4 +1,4 @@
-import { GEMINI_API_KEY } from '@/constants/app'
+import { GEMINI_API_KEY } from '../../constants/app'
 
 class GeminiUtils {
   private static indexApiKey = 0
